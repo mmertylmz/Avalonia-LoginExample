@@ -1,0 +1,181 @@
+<Window
+    x:Class="AvaloniaTest.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:AvaloniaTest.ViewModels"
+    Title="AvaloniaTest"
+    d:DesignHeight="720"
+    d:DesignWidth="1200"
+    x:DataType="vm:MainWindowViewModel"
+    Icon="/Assets/avalonia-logo.ico"
+    mc:Ignorable="d">
+
+    <Window.Styles>
+
+        <Style Selector="Border.login-border">
+            <Setter Property="Width" Value="350" />
+            <Setter Property="Height" Value="500" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#D0D0D0" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="CornerRadius" Value="20" />
+        </Style>
+
+        <Style Selector="Label.login">
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#5005F2" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="Label.signup">
+            <Setter Property="Margin" Value="0,3,0,0" />
+        </Style>
+
+        <Style Selector="Button.signup">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#5005F2" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style Selector="TextBox.default">
+            <Setter Property="Width" Value="280" />
+            <Setter Property="Margin" Value="0,0,0,20" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+
+        <Style Selector="Label.textbox-header">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+
+        <Style Selector="Button.button-forgot">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#5005F2" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="0,0,0,0" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style Selector="Label.label-remember">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#5005F2" />
+        </Style>
+
+        <Style Selector="Button.button-login">
+            <Setter Property="Margin" Value="0,20,0,5" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="#9C5EF2" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </Window.Styles>
+
+    <Grid>
+        <Border Classes="login-border">
+            <StackPanel Margin="30" Orientation="Vertical">
+                <Label Classes="login">Login</Label>
+                <StackPanel Margin="0,0,0,25" Orientation="Horizontal">
+                    <Label Classes="signup">
+                        Doesn't have an account yet?
+                    </Label>
+                    <Button Classes="signup" Content="Sign Up" />
+                </StackPanel>
+                <Label Classes="textbox-header">Email Address</Label>
+                <TextBox Classes="default" Watermark="you@example.com" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Classes="textbox-header">Password</Label>
+                    <Button
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Classes="button-forgot"
+                        Content="Forgot Password?" />
+                </Grid>
+                <TextBox Classes="default" Watermark="At least 6 character" />
+                <CheckBox>
+                    <Label Classes="label-remember">Remember Me</Label>
+                </CheckBox>
+                <Button Classes="button-login" Content="Login" />
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Border
+                        Grid.Column="0"
+                        Margin="0,10,10,0"
+                        BorderBrush="Gray"
+                        BorderThickness="0,1,0,0" />
+                    <TextBlock
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Text="or login with" />
+                    <Border
+                        Grid.Column="2"
+                        Margin="10,10,0,0"
+                        BorderBrush="Gray"
+                        BorderThickness="0,1,0,0" />
+                </Grid>
+                <StackPanel
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Button
+                        Width="150"
+                        Height="40"
+                        Padding="10,0,0,0"
+                        HorizontalContentAlignment="Left"
+                        Background="White"
+                        Foreground="#db4437">
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                Source="/Assets/google-logo.ico" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Text="Google" />
+                        </StackPanel>
+                    </Button>
+                    <Button
+                        Width="150"
+                        Height="40"
+                        Padding="10,0,0,0"
+                        HorizontalContentAlignment="Left"
+                        Background="White"
+                        Foreground="#4267B2">
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                Width="20"
+                                Height="20"
+                                Source="/Assets/facebook-logo.ico" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Text="Facebook" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</Window>
