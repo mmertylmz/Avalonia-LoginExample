@@ -1,6 +1,9 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using AvaloniaTest.ViewModels;
+using System;
+using System.Linq;
 
 namespace AvaloniaTest.Views
 {
@@ -9,7 +12,28 @@ namespace AvaloniaTest.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            var emailBox = this.FindControl<TextBox>("emailBox");
+            emailBox.PropertyChanged += EmailBox_PropertyChanged;
+
         }
-        
+
+        private void EmailBox_PropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (e.Property.Name == nameof(TextBox.Text))
+            {
+                var emailBox = sender as TextBox;
+                var viewModel = DataContext as MainWindowViewModel;
+
+                var errors = viewModel?.GetErrors(nameof(viewModel.Email));
+            }
+        }
+
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            var signUpWindow = new SignupWindow();
+            signUpWindow.Show();
+        }
+
     }
 }

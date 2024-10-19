@@ -1,0 +1,50 @@
+<Window
+    x:Class="AvaloniaTest.SignupWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Sign Up"
+    Width="400"
+    Height="300"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+
+    <Window.Styles>
+        <Style Selector="TextBlock.header">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#5005F2" />
+            <Setter Property="Margin" Value="0,10,0,25" />
+        </Style>
+
+        <Style Selector="TextBlock.label">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Padding" Value="0,0,0,0" />
+        </Style>
+
+        <Style Selector="TextBox.textbox">
+            <Setter Property="Margin" Value="0,0,0,20" />
+        </Style>
+
+        <Style Selector="Button.button">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#9C5EF2" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+    </Window.Styles>
+
+    <StackPanel Margin="20">
+        <TextBlock Classes="header" Text="Sign Up" />
+        <TextBlock Classes="label" Text="Email Address" />
+        <TextBox Classes="textbox" Watermark="you@example.com" />
+        <TextBlock Classes="label" Text="Password" />
+        <TextBox Classes="textbox" Watermark="at least 6 character" />
+        <Button Classes="button" Content="Sign Up" />
+    </StackPanel>
+</Window>
