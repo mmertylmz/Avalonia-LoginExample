@@ -124,7 +124,11 @@
                         Classes="button-forgot"
                         Content="Forgot Password?" />
                 </Grid>
-                <TextBox Classes="default" Watermark="At least 6 character" />
+                <TextBox
+                    Name="passwordBox"
+                    Classes="default"
+                    Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                    Watermark="At least 6 character" />
                 <CheckBox>
                     <Label Classes="label-remember">Remember Me</Label>
                 </CheckBox>

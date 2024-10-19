@@ -1,84 +1,51 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using AvaloniaTest.Models;
+using AvaloniaTest.Validators;
+using FluentValidation;
 
 namespace AvaloniaTest.ViewModels
 {
-    public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged, INotifyDataErrorInfo
+    public partial class MainWindowViewModel : ViewModelBase
     {
-        private string _email;
+        private UserModel _userModel = new();
+        private readonly UserValidator _userValidator = new();
+
 
         public string Email
         {
-            get { return _email; }
+            get { return _userModel.Email; }
             set
             {
-                _email = value;
+                _userModel.Email = value;
                 OnPropertyChanged(nameof(Email));
-                ValidateEmail();
+                ValidateInput(nameof(Email));
+                
             }
         }
 
-        private Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
-
-        public bool HasErrors => _errors.Count > 0;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-
-        protected void OnPropertyChanged(string propertyName)
+        public string Password
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public IEnumerable GetErrors(string? propertyName)
-        {
-            if(_errors.ContainsKey(propertyName))
+            get { return _userModel.Password; }
+            set
             {
-                return _errors[propertyName];
-            }
-            return null;
-        }
-
-        private void ValidateEmail()
-        {
-            ClearErrors(nameof(Email));
-
-            if (string.IsNullOrWhiteSpace(Email))
-            {
-                AddError(nameof(Email), "Email is required");
-            }
-            else if (!Email.Contains("@"))
-            {
-                AddError(nameof(Email), "Email is invalid");
+                _userModel.Password = value;
+                OnPropertyChanged(nameof(Password));
+                ValidateInput(nameof(Password));
             }
         }
 
-        private void AddError(string propertyName, string error)
+        private void ValidateInput(string propertyName)
         {
-            if(!_errors.ContainsKey(propertyName))
-            {
-                _errors[propertyName] = new List<string>();
-            }
+            var result = _userValidator.Validate(_userModel, options => options.IncludeProperties(propertyName));
 
-            _errors[propertyName].Add(error);
-            OnErrorsChanged(propertyName);
-        }
+            ClearErrors(propertyName);
 
-        private void ClearErrors(string propertyName)
-        {
-            if(_errors.ContainsKey(propertyName))
+            if (!result.IsValid)
             {
-                _errors.Remove(propertyName);
-                OnErrorsChanged(propertyName);
+                foreach (var error in result.Errors)
+                {
+                    AddError(propertyName, error.ErrorMessage);
+                }
             }
         }
-
-        private void OnErrorsChanged(string propertyName)
-        {
-            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-        }        
     }
 }
