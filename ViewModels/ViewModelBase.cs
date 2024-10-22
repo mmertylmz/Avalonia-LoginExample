@@ -38,24 +38,15 @@ namespace AvaloniaTest.ViewModels
         {
             ClearErrors(propertyName);
 
-            // FluentValidation ile doğrulama işlemi yapılıyor
             var result = validationFunc(value);
 
             if (!result.IsValid)
             {
-                // Hataları ValidationManager'a ekliyoruz
                 foreach (var error in result.Errors)
                 {
                     AddError(propertyName, error.ErrorMessage);
                 }
             }
         }
-
-        //protected void ValidateProperty(Func<List<string>> validationFunc, string propertyName)
-        //{
-        //    ClearErrors(propertyName);
-        //    var errors = validationFunc();
-        //    errors.ForEach(error => AddError(propertyName, error));
-        //}
     }
 }

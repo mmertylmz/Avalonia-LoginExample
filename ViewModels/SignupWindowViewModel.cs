@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace AvaloniaTest.ViewModels
 {
-    public partial class MainWindowViewModel : ViewModelBase
+    public partial class SignupWindowViewModel : ViewModelBase
     {
         private UserModel _userModel = new();
         private readonly UserValidator _userValidator = new();
@@ -17,7 +17,7 @@ namespace AvaloniaTest.ViewModels
                 _userModel.Email = value;
                 OnPropertyChanged(nameof(Email));
                 ValidateInput(nameof(Email));
-                
+
             }
         }
 

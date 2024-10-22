@@ -43,12 +43,10 @@ namespace AvaloniaTest.Views
             }
         }
 
-        
-
-        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        private async void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
             var signUpWindow = new SignupWindow();
-            signUpWindow.Show();
+            await signUpWindow.ShowDialog(this);
         }
 
     }
